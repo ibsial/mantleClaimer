@@ -1,0 +1,4 @@
+node_modules
+privates.txt
+results/*
+!results/emptyfile
