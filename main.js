@@ -5,7 +5,7 @@ import { delay, explorer, rpc } from "./config.js";
 import { getRandomIntFromTo, sleep } from "./helpers.js";
 
 async function sendClaimTx(signer, claimData) {
-    const claimContract = new Contract(claimData.contractAddress, claimData.abi, wallet);
+    const claimContract = new Contract(claimData.contractAddress, claimData.abi, signer);
     try {
         let txData = claimContract.interface.encodeFunctionData(
             claimData.callMethod,
