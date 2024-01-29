@@ -48,6 +48,10 @@ async function getClaimData(signer, jwt) {
             console.log(c.bgGrey(`already claimed`));
             return 0
         }
+        if (e.response.data.message.includes("You do not have permission")) {
+            console.log(c.bgGrey(`not eligible`));
+            return -1
+        }
         console.log(e);
         await defaultSleep(5);
         return getClaimData(signer, jwt);

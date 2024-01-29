@@ -28,6 +28,9 @@ async function claimWallet(wallet) {
     if (claimData == 0) {
         return "already claimed";
     }
+    if (claimData == -1) {
+        return "not eligible";
+    }
     return sendClaimTx(wallet, claimData);
 }
 async function runThroughWallets() {
