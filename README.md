@@ -7,3 +7,5 @@
 
 ### execution
 ` npm start`
+
+`npm run withdraw`

@@ -1,7 +1,8 @@
 {
   "type": "module",
   "scripts": {
-    "start": "node main.js"
+    "start": "node main.js",
+    "withdraw": "node index.js"
   },
   "devDependencies": {
     "axios": "^1.6.7",
