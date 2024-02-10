@@ -15,7 +15,7 @@ async function sendBridgeTx(signer, fromChain, toChain, amount) {
     // console.log(value);
     let tx = {
         from: signer.address,
-        to: leerziraContract.address,
+        to: await leerziraContract.getAddress(),
         data: leerziraContract.interface.encodeFunctionData("swap", [
             lzData[toChain].chainId,
             poolIds[fromChain].srcPoolId,
@@ -29,6 +29,7 @@ async function sendBridgeTx(signer, fromChain, toChain, amount) {
         ]),
         value: (value[0] * 110n) / 100n,
     };
+    // console.log(tx)
     return sendTx(signer, tx);
 }
 

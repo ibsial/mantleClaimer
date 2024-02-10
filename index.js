@@ -36,7 +36,7 @@ async function swapMNTToUSDT(signer) {
             };
             if (balance - amountToSend.from <= 0) {
                 console.log(c.red(`${signer.address} balance is below "to send from"`));
-                return {status: false, log: `balance is below "to send from"`};
+                return {status: false, log: `swap error, balance is below "to send from"`};
             }
             tier = amountToSend;
         }
@@ -46,7 +46,7 @@ async function swapMNTToUSDT(signer) {
         return {status: true, log: ""};
     } catch (e) {
         console.log(e?.message);
-        return {status: false, log: `swap error:   ${e?.message}`};
+        return {status: false, log: `swap error, ${e?.message}`};
     }
 }
 async function bridgeUSDT(signer) {
@@ -54,13 +54,13 @@ async function bridgeUSDT(signer) {
         let amount = await getBalance(signer, signer.address, tokenAddresses.USDT);
         let approveHash = await approve(signer, tokenAddresses.USDT, lzData.mantle.address, amount);
         console.log(c.blue("approved:", explorer + approveHash));
-        await defaultSleep(getRandomIntFromTo(3, 8));
+        await defaultSleep(getRandomIntFromTo(3, 10));
         let bridgeHash = await sendBridgeTx(signer, "mantle", "polygon", amount);
         console.log(c.green("bridged:", explorer + bridgeHash));
         return {status: true, log: ""};
     } catch (e) {
         console.log(e?.message);
-        return {status: false, log: `bridge error:   ${e?.message}`};
+        return {status: false, log: `bridge error, ${e?.message}`};
     }
 }
 
